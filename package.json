@@ -1,0 +1,19 @@
+{
+  "name": "ojala-threads-email-collector",
+  "version": "1.0.0",
+  "description": "A REST API to collect emails for the purpose of sending out newsletters",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabeKuslansky/OjalaThreadsEmailCollector.git"
+  },
+  "author": "Gabe Kuslansky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GabeKuslansky/OjalaThreadsEmailCollector/issues"
+  },
+  "homepage": "https://github.com/GabeKuslansky/OjalaThreadsEmailCollector#readme"
+}
