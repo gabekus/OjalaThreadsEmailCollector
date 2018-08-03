@@ -4,6 +4,7 @@
   "description": "A REST API to collect emails for the purpose of sending out newsletters",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "test"
   },
   "repository": {
@@ -15,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/GabeKuslansky/OjalaThreadsEmailCollector/issues"
   },
-  "homepage": "https://github.com/GabeKuslansky/OjalaThreadsEmailCollector#readme"
+  "homepage": "https://github.com/GabeKuslansky/OjalaThreadsEmailCollector#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.2.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
