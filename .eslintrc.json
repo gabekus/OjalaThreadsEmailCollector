@@ -2,6 +2,7 @@
     "extends": "airbnb-base",
     "rules": {
         "linebreak-style": 0,
-        "prefer-default-export": false
+        "import/prefer-default-export": "off",
+        "no-useless-escape": "off"
     }
 }
