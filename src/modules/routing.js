@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import logUser from './logUser';
+import { logUser } from '.';
 
 const router = Router();
 
 router.post('/email', (req) => {
-  const { name, email } = req.params;
+  const { name, email } = req.body;
   logUser(name, email);
 });
 

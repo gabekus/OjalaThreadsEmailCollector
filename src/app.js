@@ -3,13 +3,14 @@ import config from 'config';
 import fs from 'fs';
 import path from 'path';
 import { Server } from 'http';
+import bodyParser from 'body-parser';
 import { routing, logger } from './modules';
 
 const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
 
 // Create emails.csv if it doesn't exist
 if (!fs.existsSync(emailFile)) {
-  fs.writeFileSync(emailFile, 'Name, Email', { flag: 'w' });
+  fs.writeFileSync(emailFile, 'Name, Email\n', { flag: 'w' });
 }
 
 process.on('uncaughtException', (e) => {
@@ -20,7 +21,12 @@ process.on('uncaughtException', (e) => {
 // Express setup
 const app = express();
 const server = new Server(app);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(routing);
 
 // Run server
-server.listen(3000);
+const port = process.env.PORT || config.get('app.port');
+server.listen(port, () => {
+  console.log(`listening on port ${port}`);
+});
