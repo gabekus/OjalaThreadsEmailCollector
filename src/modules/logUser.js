@@ -15,7 +15,7 @@ export async function logUser(name, email, file = emailFile) {
 
     // Log to file
     fs.writeFileSync(file, `${sanitizedName}, ${email}\n`, { flag: 'a' });
-    logger.info(`${name} signed up with ${{ email }}`);
+    logger.info(`${name} signed up with ${email}`);
     return true;
   }
 
