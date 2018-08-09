@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { emailFile } from '../app';
-import { verifyEmail, emailExists } from './verifyEmail';
+import { logger, verifyEmail, emailExists } from '.';
 
 /**
  *  Logs a person's name and email to the emails.csv file
@@ -15,6 +15,7 @@ export async function logUser(name, email, file = emailFile) {
 
     // Log to file
     fs.writeFileSync(file, `${sanitizedName}, ${email}\n`, { flag: 'a' });
+    logger.info(`${name} signed up with ${{ email }}`);
     return true;
   }
 

@@ -24,6 +24,9 @@ const transports = {
   errLog: new winston.transports.File({
     filename: `${logDir}error.log`, level: 'error', format,
   }),
+  console: new winston.transports.Console({
+    format,
+  }),
 };
 
 
@@ -31,13 +34,6 @@ export const logger = winston.createLogger({
   format,
   transports: [
     transports.errLog,
+    transports.console,
   ],
 });
-
-//
-// If we're not in production then log to the `console` with the format:
-// `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
-//
-if (process.env.NODE_ENV !== 'production') {
-  logger.add(new winston.transports.Console());
-}
