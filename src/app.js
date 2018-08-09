@@ -6,7 +6,7 @@ import { Server } from 'http';
 import bodyParser from 'body-parser';
 import { routing, logger } from './modules';
 
-const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
+export const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
 
 // Create emails.csv if it doesn't exist
 if (!fs.existsSync(emailFile)) {
