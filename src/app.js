@@ -5,13 +5,19 @@ import path from 'path';
 import { Server } from 'http';
 import { routing, logger } from './modules';
 
-// Create email csv file if it doesn't exist
-const logDir = path.join(config.get('logDirectory'), 'emails.csv');
-fs.writeFile(logDir, '', { flag: 'a' }, (err) => {
-  if (err) throw err;
-});
+// Create emails.csv if it doesn't exist
+const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
 
-logger.log('error', 'bigTest');
+if (!fs.existsSync(emailFile)) {
+  fs.writeFile(emailFile, 'Name, Email', { flag: 'w' }, (err) => {
+    if (err) throw err;
+  });
+}
+
+process.on('uncaughtException', (e) => {
+  logger.error(e);
+  process.exit(1);
+});
 
 // Express setup
 const app = express();
