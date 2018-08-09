@@ -4,8 +4,9 @@
   "description": "A REST API to collect emails for the purpose of sending out newsletters",
   "main": "src/app.js",
   "scripts": {
+    "start": "npm run build && npm run serve",
     "build": "babel src -s -d dist",
-    "start": "node dist/app.js",
+    "serve": "node dist/app.js",
     "test": "mocha --require babel-register src/test"
   },
   "repository": {
@@ -30,7 +31,9 @@
   },
   "dependencies": {
     "chai": "^4.1.2",
+    "config": "^2.0.1",
     "express": "^4.16.3",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "winston": "^3.0.0"
   }
 }
