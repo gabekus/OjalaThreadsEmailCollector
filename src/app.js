@@ -5,13 +5,11 @@ import path from 'path';
 import { Server } from 'http';
 import { routing, logger } from './modules';
 
-// Create emails.csv if it doesn't exist
 const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
 
+// Create emails.csv if it doesn't exist
 if (!fs.existsSync(emailFile)) {
-  fs.writeFile(emailFile, 'Name, Email', { flag: 'w' }, (err) => {
-    if (err) throw err;
-  });
+  fs.writeFileSync(emailFile, 'Name, Email', { flag: 'w' });
 }
 
 process.on('uncaughtException', (e) => {
