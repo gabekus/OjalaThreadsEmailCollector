@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import moment from 'moment';
 import { logUser } from '.';
 import { emailFile } from '../app';
 
@@ -10,7 +11,9 @@ router.post('/email', (req) => {
 });
 
 router.get('/download', (req, res) => {
-  res.download(emailFile);
+  const date = moment(new Date()).format('MMM-Do-YY');
+  const name = `${emailFile}-${date}.csv`;
+  res.download(emailFile, name);
 });
 
 export const routing = router;
