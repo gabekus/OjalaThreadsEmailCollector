@@ -1,0 +1,28 @@
+<div id='loading'>
+</div>
+
+<div id='table-title'>
+    <div id='buttons'>
+    <a href='./download'>
+        <button class=id='download'>
+            <i class='fa fa-cloud-download-alt'></i> Download .csv
+        </button>
+    </a>
+    </div>
+    <table class='table-fill'>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each emails}}
+            <tr class='row'>
+            <td class='name'>{{this.Name}}</td>
+            <td class='email'>{{this.Email}}</td>
+            {{/each}}
+            </tr>
+        </tbody>
+    </table>
+</div>
