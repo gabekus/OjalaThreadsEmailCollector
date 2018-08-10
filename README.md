@@ -67,4 +67,4 @@ http {
 - [**Gabe Kuslansky**](https://github.com/GabeKuslansky) - Main Developer
 
 ## License
-This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.
+This project is licensed under the MIT License. See [LICENSE.md](LICENSE) for details.
