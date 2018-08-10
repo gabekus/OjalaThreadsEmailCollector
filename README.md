@@ -24,8 +24,9 @@ Start the instance by running  `npm start`
 ## Deployment
 1. Run `npm run build`
 2. Put the built files onto a server and run it using a Node process monitor/manager such as [PM2](http://pm2.keymetrics.io/)
+3. Have a service which can make a POST request to **yourwebsite.com**/email with the headers *name* and *email*.
 3. Restrict the server with a username and password built with nginx or a similar tool. Here is an example nginx configuration which allows restricted file downloading. Make sure to install a tool like `http-tools` and run `
-sudo htpasswd -c /etc/nginx/.htpasswd usernameGoesHere` to set up credentials to access the server.
+sudo htpasswd -c /etc/nginx/.htpasswd usernameGoesHere` to set up credentials to access the server. 
 ```
 events {
   worker_connections 1024;
