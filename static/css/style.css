@@ -6,6 +6,40 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+.centerContainer {
+    display: flex;
+    margin: auto;
+    max-width: 600px;
+    padding:5px;
+    width: 100%;
+}
+
+#logoContainer {
+    max-width: 850px;
+    margin-bottom: 30px;
+}
+
+button, a {
+    width: 100%;
+    margin: 3px;
+    height: 3em;
+    padding: 5px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    color: white;
+    background-color: #5bb75b;
+    cursor: pointer;
+}
+
+.table-title > img {
+    display: flex;
+    margin: auto;
+    max-width: 600px;
+    padding:5px;
+    width: 100%;
+}
+
 div.table-title {
     display: block;
     margin: auto;
@@ -22,27 +56,6 @@ div.table-title {
     font-family: "Roboto", helvetica, arial, sans-serif;
     text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
     text-transform:uppercase;
-}
-
-#buttons {
-    display: flex;
-    margin: auto;
-    max-width: 600px;
-    padding:5px;
-    width: 100%;
-}
-
-button, a {
-    width: 100%;
-    margin: 3px;
-    height: 3em;
-    padding: 5px;
-    border: none;
-    outline: none;
-    font-size: 20px;
-    color: white;
-    background-color: #5bb75b;
-    cursor: pointer;
 }
 
 /*** Table Styles **/
