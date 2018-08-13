@@ -20,7 +20,7 @@ router.post('/email', async (req, res) => {
     await logUser(name, email);
     res.writeHead(200);
   } catch (e) {
-    res.status(400);
+    res.writeHead(400);
   }
 });
 
