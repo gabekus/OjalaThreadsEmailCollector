@@ -19,8 +19,10 @@ router.post('/email', async (req, res) => {
   try {
     await logUser(name, email);
     res.writeHead(200);
+    res.end('ok');
   } catch (e) {
     res.writeHead(400);
+    res.end('error');
   }
 });
 
