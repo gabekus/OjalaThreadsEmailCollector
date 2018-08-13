@@ -18,9 +18,9 @@ router.post('/email', async (req, res) => {
   const { name, email } = req.body;
   try {
     await logUser(name, email);
-    res.status(200);
+    res.status(200).end();
   } catch (e) {
-    res.status(400);
+    res.status(400).end();
   }
 });
 
