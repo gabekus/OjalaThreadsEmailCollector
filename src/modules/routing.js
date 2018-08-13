@@ -14,9 +14,14 @@ router.get('/', async (req, res) => {
   });
 });
 
-router.post('/email', (req) => {
+router.post('/email', async (req, res) => {
   const { name, email } = req.body;
-  logUser(name, email);
+  try {
+    await logUser(name, email);
+    res.status(200);
+  } catch (e) {
+    res.status(400);
+  }
 });
 
 router.get('/download', (req, res) => {
