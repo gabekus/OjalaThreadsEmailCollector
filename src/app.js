@@ -30,6 +30,10 @@ app.set('views', path.join('./views'));
 
 app.use(routing);
 
+app.use((req, res, next) => {
+  next();
+});
+
 // Run server
 const port = process.env.PORT || config.get('app.port');
 server.listen(port, () => {

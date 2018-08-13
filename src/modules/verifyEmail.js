@@ -1,6 +1,5 @@
 import fs from 'fs';
 import util from 'util';
-import { logger } from './logger';
 import { emailFile } from '../app';
 
 const readFile = util.promisify(fs.readFile);
@@ -12,12 +11,7 @@ const readFile = util.promisify(fs.readFile);
  */
 export function verifyEmail(email) {
   const emailRules = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-  const emailIsValid = emailRules.test(email);
-  if (!emailIsValid) {
-    logger.error(`${email} is not a valid email`);
-    return false;
-  }
-  return true;
+  return emailRules.test(email);
 }
 
 /**

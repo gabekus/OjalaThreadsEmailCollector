@@ -2,49 +2,26 @@ import {
   describe, it, before, after,
 } from 'mocha';
 import chai from 'chai';
-import chaiAsPromised from 'chai-as-promised';
 import path from 'path';
 import config from 'config';
 import fs from 'fs';
-import { emailExists, logUser } from '../modules';
+import { logUser } from '../modules';
 
 const { expect } = chai;
 
 const testEmailFile = path.join(config.get('logDirectory'), 'testEmails.csv');
-const validUsers = [
-  {
-    name: '2Gabe',
-    email: 'test@test.com',
-  },
-  {
-    name: 'B2ig Boy',
-    email: 'maleHuge@large.big',
-  },
-  {
-    name: 'gibson5Marhsall@guitar.fender',
-    email: 'test5@test.com',
-  },
-];
+const validUser = {
+  name: '2Gabe',
+  email: 'test@test.com',
+};
 
-const invalidUsers = [
-  {
-    name: ',G,a,b,e',
-    email: 'test@t,est.com',
-  },
-  {
-    name: 'Big Boy',
-    email: 'maleHu ge@large.big',
-  },
-  {
-    name: '43fender',
-    email: '25FretPRS@DanElectro.a',
-  },
-];
+const invalidUser = {
+  name: ',G,a,b,e',
+  email: 'test@t,est.com',
+};
 
 describe('Logging a user', () => {
   before(() => {
-    chai.use(chaiAsPromised);
-
     // Create testEmails.csv if it doesn't exist
     if (!fs.existsSync(testEmailFile)) {
       fs.writeFileSync(testEmailFile, 'Name, Email\n', { flag: 'w' });
@@ -55,15 +32,15 @@ describe('Logging a user', () => {
     fs.unlink(testEmailFile);
   });
 
-  it('should successfully log the name and email', () => {
-    validUsers.forEach(user => expect(logUser(user.name, user.email, testEmailFile)).to.eventually.equal(true));
+  it('should successfully log the name and email', async () => {
+    expect(await logUser(validUser.name, validUser.email, testEmailFile)).to.equal('Successfully registered');
   });
 
-  it('should not log the name and email', () => {
-    invalidUsers.forEach(user => expect(logUser(user.name, user.email, testEmailFile)).to.eventually.equal(false));
+  it('should not log an invalid email', async () => {
+    expect(await logUser(invalidUser.name, invalidUser.email, testEmailFile)).to.equal('Invalid email');
   });
 
-  it('should not log existing emails', () => {
-    validUsers.forEach(user => expect(emailExists(user.email, testEmailFile)).to.eventually.equal(true));
+  it('should not log existing emails', async () => {
+    expect(await logUser(validUser.name, validUser.email, testEmailFile)).to.equal('Email exists');
   });
 });

@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import moment from 'moment';
 import csv from 'csvtojson';
-import { logUser } from '.';
 import { emailFile } from '../app';
+import { logger, logUser } from './index';
 
-const router = Router();
+const router = Router({});
 
 router.get('/', async (req, res) => {
   const emails = await csv().fromFile(emailFile);
@@ -16,13 +16,12 @@ router.get('/', async (req, res) => {
 
 router.post('/email', async (req, res) => {
   const { name, email } = req.body;
-  try {
-    await logUser(name, email);
-    res.writeHead(200);
-  } catch (e) {
-    res.writeHead(400);
+  const responseMsg = await logUser(name, email);
+  if (responseMsg === 'Successfully registered') {
+    logger.info(`${name} signed up with ${email}`);
   }
-  res.end();
+  res.writeHead(200);
+  res.end(responseMsg);
 });
 
 router.get('/download', (req, res) => {
