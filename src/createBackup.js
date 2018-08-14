@@ -30,4 +30,6 @@ const readFile = util.promisify(fs.readFile);
     // Backup the file
     fs.writeFileSync(backupFile, dataAsString);
   }
-}());
+}()).catch((e) => {
+  throw e;
+});
