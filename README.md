@@ -25,40 +25,7 @@ Start the instance by running  `npm start`
 1. Run `npm run build`
 2. Put the built files onto a server and run it using a Node process monitor/manager such as [PM2](http://pm2.keymetrics.io/)
 3. Have a service which can make a POST request to **yourwebsite.com**/email with the headers *name* and *email*.
-3. Restrict the server with a username and password built with nginx or a similar tool. Here is an example nginx configuration which allows restricted file downloading. Make sure to install a tool like `http-tools` and run `
-sudo htpasswd -c /etc/nginx/.htpasswd usernameGoesHere` to set up credentials to access the server. 
-```
-events {
-  worker_connections 1024;
-}
-
-http {
-  server {
-    listen 80;
-    server_name yourwebsite.com;
-    return 301 https://$server_name$request_uri;
-  }
-
-  server {
-    listen 443 ssl http2;
-    server_name yourwebsite.com;
-    ssl_certificate /etc/letsencrypt/live/yourwebsite.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/yourwebsite.com/privkey.pem;
-
-    location / {
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $host;
-        sendfile on;
-        auth_basic "Protected Email Download";
-        auth_basic_user_file /etc/nginx/.htpasswd;
-        proxy_pass http://0.0.0.0:8080;
-    }
-  }
-}
-```
+4. Set up an nginx config to require an authorized connection to access the page. Make sure to allow POST requests to /email, but require authorized access to /delete so strangers can't delete your emails.
 
 ## Built With
 - [Express](https://expressjs.com/) - Route handler
