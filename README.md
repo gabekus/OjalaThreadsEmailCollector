@@ -1,7 +1,7 @@
 # OjalaThreadsEmailCollector
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 
-The purpose of this project is to store emails in a .csv file from a POST request, so that newsletters can be sent out to customers. While this is a REST API for [Ojala Threads](https://ojalathreads.com), anyone this tool can use this tool to gather information for sending out a newsletter.
+The purpose of this project is to store emails in a .csv file from a POST request, so that newsletters can be sent out to customers. While this is a REST API for [Ojala Threads](https://ojalathreads.com), anyone this slightly rework this tool to gather emails for their own needs.
 
 ![preview](https://i.imgur.com/2I9GTOr.png)
 
