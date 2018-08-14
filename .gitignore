@@ -44,3 +44,4 @@ node_modules/
 
 /dist/
 /emails.csv
+/logs/backups/

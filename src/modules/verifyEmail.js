@@ -3,8 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import util from 'util';
 
-const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
 const readFile = util.promisify(fs.readFile);
+const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
 
 /**
  * Verifies an email has the correct email syntax

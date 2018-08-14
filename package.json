@@ -7,6 +7,7 @@
     "start": "npm run build && npm run serve",
     "build": "babel src -s -d dist",
     "serve": "node dist/app.js",
+    "backup":"node dist/createBackup.js",
     "test": "mocha --require babel-register src/test"
   },
   "repository": {

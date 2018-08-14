@@ -49,6 +49,6 @@ server.listen(port, () => {
 
 // Error handler
 process.on('uncaughtException', (e) => {
-  logger.error(e);
+  logger.error(e.stack);
   process.exit(1);
 });
