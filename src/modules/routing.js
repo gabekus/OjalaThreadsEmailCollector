@@ -3,7 +3,7 @@ import { Router } from 'express';
 import moment from 'moment';
 import csv from 'csvtojson';
 import path from 'path';
-import { logger, logUser } from './index';
+import { logger, logUser, deleteUser } from './index';
 
 const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
 const router = Router({});
@@ -14,6 +14,12 @@ router.get('/', async (req, res) => {
     emails,
     title: 'Newsletter - Ojala Threads',
   });
+});
+
+router.post('/delete/:email', async (req, res) => {
+  const { email } = req.params;
+  await deleteUser(email);
+  res.end();
 });
 
 router.post('/email', async (req, res) => {
