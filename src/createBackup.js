@@ -15,7 +15,6 @@ const readFile = util.promisify(fs.readFile);
   const logDir = config.get('logDirectory');
   const backupDir = path.join(logDir, 'backups');
   const backupFile = path.join(backupDir, filename);
-  console.log(backupFile);
 
   /*
  Don't make a backup if it already exists, otherwise
