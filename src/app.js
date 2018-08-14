@@ -7,11 +7,18 @@ import { Server } from 'http';
 import bodyParser from 'body-parser';
 import { routing, logger } from './modules';
 
-const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
+const logDir = config.get('logDirectory');
+const emailFile = path.join(logDir, 'emails.csv');
 
-// Create emails.csv if it doesn't exist
+// Create emails.csv with a blank template if it doesn't exist
 if (!fs.existsSync(emailFile)) {
   fs.writeFileSync(emailFile, 'Name,Email\n', { flag: 'w' });
+}
+
+// Create backups folder if it doesn't exist
+const backupFolder = path.join(logDir, 'backups');
+if (!fs.existsSync(backupFolder)) {
+  fs.mkdir(backupFolder);
 }
 
 // Express setup
