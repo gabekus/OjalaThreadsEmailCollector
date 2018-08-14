@@ -5,7 +5,7 @@ import chai from 'chai';
 import path from 'path';
 import config from 'config';
 import fs from 'fs';
-import { logUser } from '../modules';
+import { logUser, deleteUser } from '../modules';
 
 const { expect } = chai;
 
@@ -24,7 +24,7 @@ describe('Logging a user', () => {
   before(() => {
     // Create testEmails.csv if it doesn't exist
     if (!fs.existsSync(testEmailFile)) {
-      fs.writeFileSync(testEmailFile, 'Name, Email\n', { flag: 'w' });
+      fs.writeFileSync(testEmailFile, 'Name,Email\n', { flag: 'w' });
     }
   });
 
@@ -42,5 +42,10 @@ describe('Logging a user', () => {
 
   it('should not log existing emails', async () => {
     expect(await logUser(validUser.name, validUser.email, testEmailFile)).to.equal('Email exists');
+  });
+
+  it('should delete an email', async () => {
+    await deleteUser(validUser.email, testEmailFile);
+    expect(await logUser(validUser.name, validUser.email, testEmailFile)).to.equal('Successfully registered');
   });
 });

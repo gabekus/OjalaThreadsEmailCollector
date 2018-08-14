@@ -1,7 +1,9 @@
+import config from 'config';
 import fs from 'fs';
+import path from 'path';
 import util from 'util';
-import { emailFile } from '../app';
 
+const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
 const readFile = util.promisify(fs.readFile);
 
 /**

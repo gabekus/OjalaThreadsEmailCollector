@@ -1,7 +1,10 @@
+import config from 'config';
 import fs from 'fs';
-import { emailFile } from '../app';
+import path from 'path';
 import { verifyEmail, emailExists } from '.';
 
+
+const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
 /**
  *  Logs a person's name and email to the emails.csv file
  * @param name - The first name of the person to store

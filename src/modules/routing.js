@@ -1,9 +1,11 @@
+import config from 'config';
 import { Router } from 'express';
 import moment from 'moment';
 import csv from 'csvtojson';
-import { emailFile } from '../app';
+import path from 'path';
 import { logger, logUser } from './index';
 
+const emailFile = path.join(config.get('logDirectory'), 'emails.csv');
 const router = Router({});
 
 router.get('/', async (req, res) => {
